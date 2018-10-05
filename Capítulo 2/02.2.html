@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Capitulo 2</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="app">
+	</div>
+	<script src="../react/build/react.js"></script>
+	<script src="../react/build/react-dom.js"></script>
+	<script>
+		// Criação de componentes
+		var MyComponent = React.createClass({
+			render: function () {
+				return React.DOM.span(null, "Eu sou tão custom!")
+			}
+		})
+
+		// Pode se utilizar uma Facotry para se criar 
+		// várias instancias de um componente.
+		var ComponentFactory = React.createFactory(MyComponent);
+
+		// Renderização do componente
+		ReactDOM.render(
+			ComponentFactory(),
+			document.getElementById("app")
+		);
+	</script>
+</body>
+</html>
