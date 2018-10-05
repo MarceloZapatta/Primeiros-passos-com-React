@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Hello React</title>
+	<title>Capitulo 2</title>
 	<meta charset="utf-8">
 </head>
 <body>
 	<div id="app">
-		<!-- minha aplicação é redenrizada aqui -->
 	</div>
 	<script src="../react/build/react.js"></script>
 	<script src="../react/build/react-dom.js"></script>
 	<script>
+		// Criação de componentes
+		var MyComponent = React.createClass({
+			render: function () {
+				return React.DOM.span(null, "Eu sou tão custom!")
+			}
+		})
+
+		// Renderização do componente
 		ReactDOM.render(
-			React.DOM.h1({
-					id: "h1"
-				}, 
-				React.DOM.span(null,
-			 		React.DOM.em(null, "Hell"),
-					"o"),
-				" World!"),
+			React.createElement(MyComponent),
 			document.getElementById("app")
 		);
 	</script>
