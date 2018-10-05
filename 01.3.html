@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello React</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="app">
+	</div>
+	<script src="react/build/react.js"></script>
+	<script src="react/build/react-dom.js"></script>
+	<script>
+		// Contra exemplo
+		// Não funciona devido as palavras reservadas
+		// class e for
+		// ReactDOM.render(
+		// 	React.DOM.h1(
+		// 		{
+		// 			class: "pretty",
+		// 			for: "me"
+		// 		},
+		// 		"Hello World!"
+		// 	),
+		// 	document.getElementById("app")
+		// );
+
+		// Exemplo funcional
+		ReactDOM.render(
+			React.DOM.h1(
+				{
+					style: {
+						className: "pretty",
+						htmlFor: "me"
+					}
+				},
+				"Hello World!"
+			),
+			document.getElementById("app")
+		);
+	</script>
+</body>
+</html>
