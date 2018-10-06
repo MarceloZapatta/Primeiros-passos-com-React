@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Estados de componentes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <!-- Local onde é renderizado o app -->
+    <div id="app"></div>
+    <script src="../react/build/react.js"></script>
+    <script src="../react/build/react-dom.js"></script>
+    <script>
+        // Componente
+        var TextAreaCounter = React.createClass({
+            propTypes: {
+                defaultValue: React.PropTypes.string,
+            },
+            render: function () {
+                return React.DOM.div(null,
+                        React.DOM.textarea({
+                            value: this.state.text,
+                            onChange: this._textChange,
+                        }),
+                        React.DOM.h3(null, this.state.text.length)
+                    );
+            },
+            getInitialState: function () {
+                return {
+                    text: this.props.defaultValue,
+                };
+            },
+            _textChange: function (ev) {
+                this.setState({
+                    text: ev.target.value
+                })
+            }
+        })
+
+        var myTextAreaCounter = ReactDOM.render(
+                React.createElement(TextAreaCounter, {
+                    defaultValue: "Bob",
+                }),
+                document.getElementById("app")
+            )
+    </script>
+</body>
+</html>
