@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Estados de componentes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <!-- Local onde é renderizado o app -->
+    <div id="app"></div>
+    <script src="../react/build/react.js"></script>
+    <script src="../react/build/react-dom.js"></script>
+    <script>
+        // Mixin (objeto com um conjunto de metodos)
+        var logMixin = {
+            _log: function(methodName, args) {
+                console.log(this.name + '::' + methodName, args);
+            },
+            componentWillUpdate: function() {
+                this._log('componentWillUpdate', arguments);
+            },
+            componentDidUpdate: function(oldProps, oldState) {
+                this._log('componentDidUpdate', arguments);
+            },
+            componentWillMount: function() {
+                this._log('componentWillMount', arguments);
+            },
+            componentDidMount: function() {
+                this._log('componentDidMount', arguments);
+            },
+            componentWillUnmount: function() {
+                this._log('componentWillUnmount', arguments);
+            },
+        }
+
+        // Componente
+        var TextAreaCounter = React.createClass({
+            name: 'TextAreaCounter',
+            mixins: [logMixin],
+            propTypes: {
+                defaultValue: React.PropTypes.string,
+            },
+            render: function () {
+                var counter = null;
+
+                if(this.state.text.length > 0) {
+                    counter = React.DOM.h3(null, 
+                        React.createElement(Counter, {
+                            count: this.state.text.length,
+                        })
+                    );
+                }
+                return React.DOM.div(null,
+                        React.DOM.textarea({
+                            value: this.state.text,
+                            onChange: this._textChange,
+                        }),
+                        counter
+                    );
+            },
+            getInitialState: function () {
+                return {
+                    text: this.props.defaultValue,
+                };
+            },
+            _textChange: function (ev) {
+                this.setState({
+                    text: ev.target.value
+                })
+            },
+            // Implemento esse método para lidar com instromissões externas
+            componentWillReceiveProps: function(newProps) {
+                this.setState({
+                    text: newProps.defaultValue,
+                })
+            }
+        })
+
+        var Counter = React.createClass({
+            name: 'Counter',
+            mixins: [logMixin],
+            propTypes: {
+                count: React.PropTypes.number.isRequired,
+            },
+            render: function() {
+                return React.DOM.span(null, this.props.count);
+            }
+        })
+
+        // Se mudar diretamenta não acontecera mudanças na UI
+        var myTextAreaCounter = ReactDOM.render(
+                React.createElement(TextAreaCounter, {
+                    defaultValue: "Bob"
+                }),
+                document.getElementById("app")
+            )
+    </script>
+</body>
+</html>
