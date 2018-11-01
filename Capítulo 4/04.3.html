@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Propragação de atributos pai para filho</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../react/build/react.js"></script>
+    <script src="../react/build/react-dom.js"></script>
+    <script src="../react/babel/browser.js"></script>
+    <script type="text/babel">
+        var FancyLink = React.createClass({
+            render: function() {
+
+                switch(this.props.size) {
+                    // faz algo com a propriedade size
+                    case '20':
+                        alert('20');
+                        break;
+                }
+
+                var attribs = Object.assign({}, this.props); // clone raso
+                delete attribs.size;
+
+                return <a {...this.props}>{this.props.children}</a>;
+            }
+        });
+
+        ReactDOM.render(
+            <FancyLink
+                href="top.com"
+                size="20">
+                Teste
+            </FancyLink>,
+            document.getElementById('app')
+        );
+    </script>
+</body>
+</html>
