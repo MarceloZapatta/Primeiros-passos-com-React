@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World Com JSX</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../react/build/react.js"></script>
+    <script src="../react/build/react-dom.js"></script>
+    <script src="../react/babel/browser.js"></script>
+    <script type="text/babel">
+        ReactDOM.render(
+            {/* Comentário em JSX */}
+            <h1 id="my-heading">
+                {/* Espaços em brancos vão resultar em <span> </span>*/}
+                {1} plus top {2} topzera {3}
+                }
+            </h1>
+            <h1 id="my-heading-2">
+                {/* 
+                    Espaços em brancos vão resultar 
+                    em <span> </span>
+                */}
+                {1}
+                {' '}plus{' '}
+                {2}
+                {' topzera '}
+                {3}
+            </h1>
+            <h2>
+                Entidades HTML normalmente &raquo;
+                {/* 
+                    Para expressões em strings devo 
+                    usar o caracter unicode
+                */}
+                <br>
+                {'Entidades unicode \u000b'}
+            </h2>,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>
