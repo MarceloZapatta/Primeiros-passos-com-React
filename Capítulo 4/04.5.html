@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Desenvolvendo vários nós no JSX</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../react/build/react.js"></script>
+    <script src="../react/build/react-dom.js"></script>
+    <script src="../react/babel/browser.js"></script>
+    <script type="text/babel">
+        var Exemplo = React.createClass({
+            render: function() {
+                return(
+                    {
+                        // Tenho que sempre ter um nó maior
+                        // a exemplo uma div
+                        // sem atributte class nem for
+                        // são reservadas no ECMAScript
+                        <div>
+                            <span className="semClass">
+                                Attribute class deve ser className
+                            </span>
+                            <span htmlFor="nome">
+                                Attribute for deve ser htmlFor
+                            </span>
+                            <span style="{style}">
+                                Style deve ser um objeto
+                            </span>
+                            <span style="{{fontSize: '24px'}}">
+                                Pode ser escrito inline
+                            </span>
+                            <span>
+                                As tags sempre devem ser fechadas
+                            </span>
+                            <span>
+                                Atributos devem ser em camelCase
+                            </span>
+                            <span>
+                                Formulários:
+                                
+                            </span>
+                        </div>
+                    },
+                    var style = {
+                        fontSize: '12px',
+                        lineHeight: '1.6'
+                    }
+                )
+            }
+        });
+
+        ReactDOM.render(
+            <Exemplo />,
+            document.getElementById('app')
+        );
+    </script>
+</body>
+</html>
